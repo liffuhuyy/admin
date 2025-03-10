@@ -1,0 +1,88 @@
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabPerusahaan = document.getElementById('tab-perusahaan');
+        const tabAdmin = document.getElementById('tab-admin');
+        
+        tabPerusahaan.addEventListener('click', function() {
+            tabPerusahaan.classList.add('active');
+            tabAdmin.classList.remove('active');
+        });
+        
+        tabAdmin.addEventListener('click', function() {
+            tabAdmin.classList.add('active');
+            tabPerusahaan.classList.remove('active');
+        });
+        
+        // Form validation
+        const form = document.querySelector('.form-container');
+        const nameInput = document.getElementById('nama');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const registerBtn = document.querySelector('.btn-register');
+        
+        registerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Simple validation
+            if (!nameInput.value.trim()) {
+                nameInput.style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                nameInput.style.borderColor = '#ddd';
+            }
+            
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                emailInput.style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                emailInput.style.borderColor = '#ddd';
+            }
+            
+            if (!passwordInput.value.trim() ||  passwordInput.value.length < 6) {
+                passwordInput.style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                passwordInput.style.borderColor = '#ddd';
+            }
+            
+            if (isValid) {
+                // Form is valid, you can submit it or show success message
+                alert('Registrasi berhasil!');
+                form.reset();
+            }
+        });
+        
+        // Email validation helper
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Input focus event for better UX
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#007bff';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.borderColor = '#ddd';
+            });
+        });
+        
+        // Login link functionality
+        const loginLink = document.getElementById('login-link');
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecting to login page...');
+        });
+    });
+</script>
+</body>
+</html>
+
