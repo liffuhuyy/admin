@@ -1,1 +1,100 @@
-admin
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Absensi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background: #222;
+            color: white;
+            padding: 20px;
+            position: fixed;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Ringkasan Absen</li>
+            <li>Hari Ini</li>
+            <li>Pengaturan</li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Dashboard</h1>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Absen</h3>
+                <p>380</p>
+            </div>
+            <div class="card">
+                <h3>Kehadiran Siswa</h3>
+                <p>100</p>
+            </div>
+            <div class="card">
+                <h3>Persentase Hadir</h3>
+                <p>95.2%</p>
+            </div>
+            <div class="card">
+                <h3>Keterlambatan</h3>
+                <p>250</p>
+            </div>
+        </div>
+        <canvas id="absenChart"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('absenChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+                datasets: [{
+                    label: 'Jumlah Kehadiran',
+                    data: [200, 180, 220, 210, 250, 230],
+                    backgroundColor: ['#4CAF50', '#2196F3', '#FFC107', '#9C27B0', '#FF5722', '#3F51B5']
+                }]
+            },
+        });
+    </script>
+</body>
+</html>
