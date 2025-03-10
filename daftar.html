@@ -1,88 +1,239 @@
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tab switching functionality
-        const tabPerusahaan = document.getElementById('tab-perusahaan');
-        const tabAdmin = document.getElementById('tab-admin');
-        
-        tabPerusahaan.addEventListener('click', function() {
-            tabPerusahaan.classList.add('active');
-            tabAdmin.classList.remove('active');
-        });
-        
-        tabAdmin.addEventListener('click', function() {
-            tabAdmin.classList.add('active');
-            tabPerusahaan.classList.remove('active');
-        });
-        
-        // Form validation
-        const form = document.querySelector('.form-container');
-        const nameInput = document.getElementById('nama');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const registerBtn = document.querySelector('.btn-register');
-        
-        registerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            let isValid = true;
-            
-            // Simple validation
-            if (!nameInput.value.trim()) {
-                nameInput.style.borderColor = '#dc3545';
-                isValid = false;
-            } else {
-                nameInput.style.borderColor = '#ddd';
-            }
-            
-            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
-                emailInput.style.borderColor = '#dc3545';
-                isValid = false;
-            } else {
-                emailInput.style.borderColor = '#ddd';
-            }
-            
-            if (!passwordInput.value.trim() ||  passwordInput.value.length < 6) {
-                passwordInput.style.borderColor = '#dc3545';
-                isValid = false;
-            } else {
-                passwordInput.style.borderColor = '#ddd';
-            }
-            
-            if (isValid) {
-                // Form is valid, you can submit it or show success message
-                alert('Registrasi berhasil!');
-                form.reset();
-            }
-        });
-        
-        // Email validation helper
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        // Input focus event for better UX
-        const inputs = document.querySelectorAll('.form-control');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.style.borderColor = '#007bff';
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .form-container {
+            background-color: white;
+            width: 450px;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            user-select: none;
+        }
+        
+        .tab.active {
+            background-color: white;
+            color: black;
+        }
+        
+        .tab:not(.active) {
+            background-color: #e5e5e5;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #000;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        .btn-register {
+            background-color: #001529;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            width: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 30px auto 15px;
+        }
+        
+        .btn-register:hover {
+            background-color: #002a4e;
+        }
+        
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .login-link a {
+            color: #001529;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        ::placeholder {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="tab-container">
+            <div class="tab" id="tab-perusahaan">Perusahaan</div>
+            <div class="tab active" id="tab-admin">Admin</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="nama">Nama Admin</label>
+            <input type="text" class="form-control" id="nama" placeholder="Nama Lengkap">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Admin</label>
+            <input type="email" class="form-control" id="email" placeholder="admin@gmail.com">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Masukan Password">
+        </div>
+        
+        <button class="btn-register">Daftar</button>
+        
+        <div class="login-link">
+            Sudah Punya Akun?<a href="#" id="login-link">Masuk di sini</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const tabPerusahaan = document.getElementById('tab-perusahaan');
+            const tabAdmin = document.getElementById('tab-admin');
+            
+            tabPerusahaan.addEventListener('click', function() {
+                tabPerusahaan.classList.add('active');
+                tabAdmin.classList.remove('active');
             });
             
-            input.addEventListener('blur', function() {
-                this.style.borderColor = '#ddd';
+            tabAdmin.addEventListener('click', function() {
+                tabAdmin.classList.add('active');
+                tabPerusahaan.classList.remove('active');
+            });
+            
+            // Form validation
+            const form = document.querySelector('.form-container');
+            const nameInput = document.getElementById('nama');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const registerBtn = document.querySelector('.btn-register');
+            
+            registerBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Simple validation
+                if (!nameInput.value.trim()) {
+                    nameInput.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    nameInput.style.borderColor = '#ddd';
+                }
+                
+                if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                    emailInput.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    emailInput.style.borderColor = '#ddd';
+                }
+                
+                if (!passwordInput.value.trim() || passwordInput.value.length < 6) {
+                    passwordInput.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    passwordInput.style.borderColor = '#ddd';
+                }
+                
+                if (isValid) {
+                    // Form is valid, you can submit it or show success message
+                    alert('Registrasi berhasil!');
+                    form.reset();
+                }
+            });
+            
+            // Email validation helper
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Input focus event for better UX
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#007bff';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#ddd';
+                });
+            });
+            
+            // Login link functionality
+            const loginLink = document.getElementById('login-link');
+            loginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Redirecting to login page...');
             });
         });
-        
-        // Login link functionality
-        const loginLink = document.getElementById('login-link');
-        loginLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Redirecting to login page...');
-        });
-    });
-</script>
+    </script>
 </body>
 </html>
-
