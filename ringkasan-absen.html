@@ -3,230 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <title>ABSEN MAGANG SISWA SMKN 1 SUBANG</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family:'Poppins';
+            font-family: Arial, sans-serif;
         }
-
+        
         body {
-            background-color: #f0f0f0;
+            background-color: #e0f2f1;
         }
-
+        
         .header {
-            background-color: #0a192f;
+            background-color: #001f3f;
             color: white;
-            padding: 10px;
+            padding: 10px 20px;
             text-align: center;
             font-weight: bold;
         }
-
-        .sidebar {
-            width: 90px;
-            background-color: #0a192f;
-            height: calc(100vh - 40px);
-            float: left;
-            color: white;
+        
+        .content-area {
+            padding: 20px;
+            background-color: #f5f5f5;
+            min-height: calc(100vh - 50px);
         }
-
-        .menu-item {
-            padding: 10px;
-            text-align: center;
-            font-size: 12px;
-            cursor: pointer;
-            border-bottom: 1px solid #152a43;
-        }
-
-        .menu-item.active {
-            background-color: #152a43;
-        }
-
-        .menu-item i {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 16px;
-            color: white;
-        }
-
-        .content {
-            margin-left: 90px;
+        
+        .content-header {
+            background-color: white;
             padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        .title {
-            background-color: #eee;
-            padding: 10px;
-            margin-bottom: 15px;
+        
+        .content-title {
             font-size: 18px;
             font-weight: bold;
+            margin-bottom: 15px;
         }
-
-        .filters {
+        
+        .filter-container {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
-
+        
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
+        
         .dropdown-btn {
-            background-color: #0a192f;
+            background-color: #001f3f;
             color: white;
             padding: 8px 15px;
             border: none;
             cursor: pointer;
-            min-width: 100px;
+            min-width: 120px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
-
+        
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 100px;
+            background-color: white;
+            min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
+            max-height: 250px;
+            overflow-y: auto;
         }
-
+        
         .dropdown-content a {
             color: black;
-            padding: 8px 12px;
+            padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 14px;
         }
-
+        
         .dropdown-content a:hover {
             background-color: #f1f1f1;
         }
-
+        
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .data-table th, .data-table td {
-            padding: 8px 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        .data-table th {
-            background-color: #eee;
-            font-weight: bold;
-        }
-
-        .data-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .section-title {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .fa {
-            font-size: 18px;
-            margin-bottom: 5px;
+        
+        .table-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
         }
         
-        .ringkasan-absen-active {
-            background-color: #152a43;
+        .category-title {
+            background-color: #f5f5f5;
+            padding: 10px 15px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .status-hadir {
+            color: #28a745;
+        }
+        
+        .light-row {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <div class="header">ABSEN MAGANG SISWA SMKN 1 SUBANG</div>
-    
-    <div class="sidebar">
-        <div class="menu-item">
-            <i class="fa">📊</i>
-            Dashboard
-        </div>
-        <div class="menu-item ringkasan-absen-active">
-            <i class="fa">📑</i>
-            Ringkasan Absen
-        </div>
-        <div class="menu-item">
-            <i class="fa">🔔</i>
-            Notifikasi
-        </div>
-        <div class="menu-item">
-            <i class="fa">⚙️</i>
-            Pengaturan
-        </div>
+    <div class="header">
+        ABSEN MAGANG SISWA SMKN 1 SUBANG
     </div>
     
-    <div class="content">
-        <div class="title">Ringkasan Absen</div>
-        
-        <div class="filters">
-            <div class="dropdown">
-                <button class="dropdown-btn" id="jurusanBtn">Jurusan <span>▼</span></button>
-                <div class="dropdown-content" id="jurusanDropdown">
-                    <a href="#" data-value="AKL">AKL</a>
-                    <a href="#" data-value="MPLB">MPLB</a>
-                    <a href="#" data-value="BDP">BDP</a>
-                    <a href="#" data-value="RPL">RPL</a>
-                    <a href="#" data-value="TKJ">TKJ</a>
-                    <a href="#" data-value="DKV">DKV</a>
-                    <a href="#" data-value="TO">TO</a>
-                    <a href="#" data-value="TM">TM</a>
-                    <a href="#" data-value="TL">TL</a>
-                    <a href="#" data-value="KL">KL</a>
-                </div>
-            </div>
+    <div class="content-area">
+        <div class="content-header">
+            <div class="content-title">Ringkasan Absen</div>
             
-            <div class="dropdown">
-                <button class="dropdown-btn" id="bulanBtn">Bulan <span>▼</span></button>
-                <div class="dropdown-content" id="bulanDropdown">
-                    <a href="#" data-value="Januari">Januari</a>
-                    <a href="#" data-value="Februari">Februari</a>
-                    <a href="#" data-value="Maret">Maret</a>
-                    <a href="#" data-value="April">April</a>
-                    <a href="#" data-value="Mei">Mei</a>
-                    <a href="#" data-value="Juni">Juni</a>
-                    <a href="#" data-value="Juli">Juli</a>
-                    <a href="#" data-value="Agustus">Agustus</a>
-                    <a href="#" data-value="September">September</a>
-                    <a href="#" data-value="Oktober">Oktober</a>
-                    <a href="#" data-value="November">November</a>
-                    <a href="#" data-value="Desember">Desember</a>
+            <div class="filter-container">
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        RPL <i>▼</i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">AKL</a>
+                        <a href="#">MPLB</a>
+                        <a href="#">BDP</a>
+                        <a href="#">RPL</a>
+                        <a href="#">TKJ</a>
+                        <a href="#">DKV</a>
+                        <a href="#">TM</a>
+                        <a href="#">TO</a>
+                        <a href="#">TL</a>
+                        <a href="#">KL</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="dropdown">
-                <button class="dropdown-btn" id="tahunBtn">Tahun <span>▼</span></button>
-                <div class="dropdown-content" id="tahunDropdown">
-                    <a href="#" data-value="2025">2025</a>
-                    <a href="#" data-value="2026">2026</a>
-                    <a href="#" data-value="2027">2027</a>
-                    <a href="#" data-value="2028">2028</a>
-                    <a href="#" data-value="2029">2029</a>
-                    <a href="#" data-value="2030">2030</a>
+                
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        Januari <i>▼</i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Januari</a>
+                        <a href="#">Februari</a>
+                        <a href="#">Maret</a>
+                        <a href="#">April</a>
+                        <a href="#">Mei</a>
+                        <a href="#">Juni</a>
+                        <a href="#">Juli</a>
+                        <a href="#">Agustus</a>
+                        <a href="#">September</a>
+                        <a href="#">Oktober</a>
+                        <a href="#">November</a>
+                        <a href="#">Desember</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        2025 <i>▼</i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">2025</a>
+                        <a href="#">2026</a>
+                        <a href="#">2027</a>
+                        <a href="#">2028</a>
+                        <a href="#">2029</a>
+                        <a href="#">2030</a>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div id="dataContent" style="display: none;">
-            <div class="section-title">Absen Masuk :</div>
-            <table class="data-table">
+        <div class="table-container">
+            <div class="category-title">Absen Masuk :</div>
+            <table>
                 <thead>
                     <tr>
                         <th>No</th>
@@ -240,41 +215,43 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Alwins, H.</td>
+                        <td>Alora, N.</td>
                         <td>RPL</td>
                         <td>PT. ABC</td>
                         <td>09:00 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
-                    <tr>
+                    <tr class="light-row">
                         <td>2</td>
                         <td>Bagus, S.</td>
                         <td>RPL</td>
                         <td>PT. BOS</td>
                         <td>08:00 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Diah, A.</td>
+                        <td>Dian, A.</td>
                         <td>RPL</td>
-                        <td>PT. COC</td>
+                        <td>PT. CDC</td>
                         <td>08:45 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
-                    <tr>
+                    <tr class="light-row">
                         <td>4</td>
-                        <td>Falit, W.</td>
+                        <td>Fariz, W.</td>
                         <td>RPL</td>
                         <td>PT. LKP</td>
                         <td>07:57 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
                 </tbody>
             </table>
-            
-            <div class="section-title">Absen Pulang :</div>
-            <table class="data-table">
+        </div>
+        
+        <div class="table-container" style="margin-top: 20px;">
+            <div class="category-title">Absen Pulang :</div>
+            <table>
                 <thead>
                     <tr>
                         <th>No</th>
@@ -288,106 +265,84 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Alwins, H.</td>
+                        <td>Alora, N.</td>
                         <td>RPL</td>
                         <td>PT. ABC</td>
                         <td>17:00 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
-                    <tr>
+                    <tr class="light-row">
                         <td>2</td>
                         <td>Bagus, S.</td>
                         <td>RPL</td>
                         <td>PT. BOS</td>
                         <td>16:00 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Diah, A.</td>
+                        <td>Dian, A.</td>
                         <td>RPL</td>
-                        <td>PT. COC</td>
+                        <td>PT. CDC</td>
                         <td>17:05 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
-                    <tr>
+                    <tr class="light-row">
                         <td>4</td>
-                        <td>Falit, W.</td>
+                        <td>Fariz, W.</td>
                         <td>RPL</td>
                         <td>PT. LKP</td>
                         <td>12:30 WIB</td>
-                        <td>Hadir</td>
+                        <td class="status-hadir">Hadir</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        
-        <div id="emptyContent" style="display: block; text-align: center; margin-top: 50px;">
-            <p>Silahkan pilih filter untuk menampilkan data</p>
-        </div>
     </div>
 
     <script>
-        // Set default selected values
-        let selectedJurusan = '';
-        let selectedBulan = '';
-        let selectedTahun = '';
-        
-        // Get DOM elements
-        const jurusanBtn = document.getElementById('jurusanBtn');
-        const bulanBtn = document.getElementById('bulanBtn');
-        const tahunBtn = document.getElementById('tahunBtn');
-        const dataContent = document.getElementById('dataContent');
-        const emptyContent = document.getElementById('emptyContent');
-        
-        // Add event listeners for jurusan dropdown
-        const jurusanItems = document.querySelectorAll('#jurusanDropdown a');
-        jurusanItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                selectedJurusan = this.getAttribute('data-value');
-                jurusanBtn.textContent = selectedJurusan + ' ▼';
-                checkAndShowData();
-            });
-        });
-        
-        // Add event listeners for bulan dropdown
-        const bulanItems = document.querySelectorAll('#bulanDropdown a');
-        bulanItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                selectedBulan = this.getAttribute('data-value');
-                bulanBtn.textContent = selectedBulan + ' ▼';
-                checkAndShowData();
-            });
-        });
-        
-        // Add event listeners for tahun dropdown
-        const tahunItems = document.querySelectorAll('#tahunDropdown a');
-        tahunItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                selectedTahun = this.getAttribute('data-value');
-                tahunBtn.textContent = selectedTahun + ' ▼';
-                checkAndShowData();
-            });
-        });
-        
-        // Function to check and show data based on selected filters
-        function checkAndShowData() {
-            if (selectedJurusan === 'RPL' && selectedBulan === 'Januari' && selectedTahun === '2025') {
-                dataContent.style.display = 'block';
-                emptyContent.style.display = 'none';
-            } else if (selectedJurusan !== '' && selectedBulan !== '' && selectedTahun !== '') {
-                dataContent.style.display = 'none';
-                emptyContent.style.display = 'block';
-                emptyContent.innerHTML = '<p>Tidak ada data untuk filter yang dipilih</p>';
+        // Function to handle filter changes
+        function filterData(jurusan, bulan, tahun) {
+            // Only show data for RPL, January 2025
+            if (jurusan === 'RPL' && bulan === 'Januari' && tahun === '2025') {
+                document.querySelectorAll('.table-container').forEach(table => {
+                    table.style.display = 'block';
+                });
             } else {
-                dataContent.style.display = 'none';
-                emptyContent.style.display = 'block';
-                emptyContent.innerHTML = '<p>Silahkan pilih filter untuk menampilkan data</p>';
+                document.querySelectorAll('.table-container').forEach(table => {
+                    table.style.display = 'none';
+                });
             }
         }
+
+        // Set up event listeners for dropdown changes
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown-content a');
+            
+            dropdowns.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update button text to selected value
+                    this.parentNode.previousElementSibling.innerHTML = this.textContent + ' <i>▼</i>';
+                    
+                    // Get current filter values
+                    const jurusan = document.querySelectorAll('.dropdown-btn')[0].textContent.trim().replace('▼', '').trim();
+                    const bulan = document.querySelectorAll('.dropdown-btn')[1].textContent.trim().replace('▼', '').trim();
+                    const tahun = document.querySelectorAll('.dropdown-btn')[2].textContent.trim().replace('▼', '').trim();
+                    
+                    // Apply filters
+                    filterData(jurusan, bulan, tahun);
+                });
+            });
+            
+            // Initial filter setup - only show data for RPL, January 2025
+            const initialJurusan = document.querySelectorAll('.dropdown-btn')[0].textContent.trim().replace('▼', '').trim();
+            const initialBulan = document.querySelectorAll('.dropdown-btn')[1].textContent.trim().replace('▼', '').trim();
+            const initialTahun = document.querySelectorAll('.dropdown-btn')[2].textContent.trim().replace('▼', '').trim();
+            
+            filterData(initialJurusan, initialBulan, initialTahun);
+        });
     </script>
 </body>
-
+</html>
