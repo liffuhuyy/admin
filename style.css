@@ -118,3 +118,14 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.container {
+    display: flex;
+}
+
+#sidebar-frame {
+    width: 250px; /* Atur lebar sidebar */
+    height: 100vh;
+    border: none; /* Hilangkan border iframe */
+}
+
