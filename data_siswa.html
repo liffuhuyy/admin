@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Siswa</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="sidebar-container"></div> <!-- Sidebar akan dimuat di sini -->
+        <div class="main-content">
+            <h1>Manajemen Data Siswa</h1>
+            <div class="user-section">
+                <h2>Data Siswa</h2>
+                <div class="buttons">
+                    <button onclick="openModal('Tambah Siswa')">Tambah Siswa</button>
+                    <button onclick="openModal('Edit Siswa')">Edit Siswa</button>
+                    <button onclick="openModal('Hapus Siswa')">Hapus Siswa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <form id="modal-form">
+                <input type="text" id="name" placeholder="Nama" required>
+                <input type="text" id="nis" placeholder="NIS" required>
+                <select id="jurusan">
+                    <option value="RPL">RPL</option>
+                    <option value="TKJ">TKJ</option>
+                    <option value="AKL">AKL</option>
+                </select>
+                <button type="submit">Simpan</button>
+            </form>
+            <button onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
